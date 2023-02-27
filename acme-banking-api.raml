@@ -22,9 +22,6 @@ protocols:
             type: Missing attribute
             title: Body structure incomplete
             detail: Body is missing the account id.
-          
-
-  
   /{account_id}:
     get:
       displayName: Get information for a specific account
@@ -34,6 +31,13 @@ protocols:
       displayName: Get information for a specific account
       responses:
         201:
+        503:
+          headers:
+          body:
+            example:
+              type: Service Unavailable
+              title: Service Unavailable
+              detail: The account service is not available
     delete:
       displayName: Get information for a specific account
       responses:
@@ -55,24 +59,32 @@ protocols:
     displayName: Create a new customer
     responses:
       201:
+      400:
+        headers:
+        body:
+          example:
+            type: Missing attribute
+            title: Body structure incomplete
+            detail: Body is missing the customer id.
+      
   
   /{customer_id}:
     get:
       displayName: Get information for a specific customer
       responses:
         200:
-        400:
-          headers:
-          body:
-            example:
-              type: Missing attribute
-              
-
 
     patch:
       displayName: Update information for a specific customer
       responses:
         204:
+        503:
+          headers:
+          body:
+            example:
+              type: Service Unavailable
+              title: Service Unavailable
+              detail: The customer service is not available
     delete:
       displayName: Delete information for a specific customer
       responses:
@@ -91,6 +103,13 @@ protocols:
     displayName: Create a new transaction
     responses:
       201:
+      400:
+        headers:
+        body:
+          example:
+            type: Missing attribute
+            title: Body structure incomplete
+            detail: Body is missing the transaction id.
   /{transaction_id}:
     get:
       displayName: Get information for a specific transaction
