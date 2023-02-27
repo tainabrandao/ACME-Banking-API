@@ -49,10 +49,13 @@ protocols:
     patch:
       displayName: Update information for a specific customer
       responses:
-        
+
 
     delete:
       displayName: Delete information for a specific customer
+      responses:
+        202:
+          
 
 /customers/{customer_id}/accounts:
   get:
