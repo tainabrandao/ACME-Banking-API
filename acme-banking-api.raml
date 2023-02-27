@@ -9,10 +9,18 @@ protocols:
   - HTTPS
   - HTTP
 
+# Register new datatypes
+types:
+  Account: !include datatypes/Account.raml
+  Customer: !include datatypes/Customer.raml
+  Transaction: !include datatypes/Transaction.raml
+  CustomErrorMessage: !include datatypes/CustomErrorMessage.raml
 
 /accounts:
   post:
     displayName: Create a new account
+    body:
+      type: Account
     responses:
       201:
       400:
@@ -27,6 +35,8 @@ protocols:
       displayName: Get information for a specific account
       responses:
         200:
+          body:
+            type: Account
     put:
       displayName: Get information for a specific account
       responses:
@@ -53,8 +63,17 @@ protocols:
 /customers:
   get:
     displayName: Get all customers in the bank
+    # headers & body for request
+    headers:
+      Accept:
+        required: false
+        example: application/json
     responses:
       200:
+        headers:
+          Cache-Control:
+            example: max-age=604800 # 1 week
+        body:
   post:
     displayName: Create a new customer
     responses:
