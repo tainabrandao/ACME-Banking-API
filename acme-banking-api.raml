@@ -61,6 +61,12 @@ protocols:
       displayName: Get information for a specific customer
       responses:
         200:
+        400:
+          headers:
+            body:
+              example:
+                type: Missing attribute
+
 
     patch:
       displayName: Update information for a specific customer
