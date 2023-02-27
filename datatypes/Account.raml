@@ -9,20 +9,17 @@ protocols:
   - HTTPS
   - HTTP
 
-# Register new datatypes
+#Registrer new datatypes
 types:
-  Account: !include 
-  Customer: !include Customer.raml
-  Transaction: !include Transaction.raml
-  CustomErrorMessage: !include CustomErrorMessage.raml
+  Account: !include datatypes/Account.raml
 
 
-  newtype: datatypes/Account.raml
+
 /accounts:
   post:
     displayName: Create a new account
     body:
-      type: Account
+      type: Customer
     responses:
       201:
       400:
@@ -37,8 +34,6 @@ types:
       displayName: Get information for a specific account
       responses:
         200:
-          body:
-            type: Account
     put:
       displayName: Get information for a specific account
       responses:
