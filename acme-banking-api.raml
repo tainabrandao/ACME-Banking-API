@@ -25,6 +25,9 @@ protocols:
         201:
     delete:
       displayName: Get information for a specific account
+      responses:
+        202:
+        204:
 
 /accounts/{account_id}/transactions:
   get:
@@ -49,13 +52,13 @@ protocols:
     patch:
       displayName: Update information for a specific customer
       responses:
-
+        204:
 
     delete:
       displayName: Delete information for a specific customer
       responses:
         202:
-          
+        204:
 
 /customers/{customer_id}/accounts:
   get:
