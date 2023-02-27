@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@tainabrandao 
+pedes
+/
+acme-banking-api-27feb
+Public
+Fork your own copy of pedes/acme-banking-api-27feb
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security
+Insights
+acme-banking-api-27feb/acme-banking-api.raml
+@pedes
+pedes Autosave Mon Feb 27 2023 19:23:47 GMT 0100 (Central European Standard…
+…
+Latest commit b3e32b2 2 minutes ago
+ History
+ 1 contributor
+91 lines (79 sloc)  1.8 KB
+
 #%RAML 1.0
 title: ACME Banking API
 description: |-
@@ -13,6 +43,17 @@ protocols:
 /accounts:
   post:
     displayName: Create a new account
+    responses:
+      201:
+      400:
+        headers:
+        body:
+          example:
+            type: Missing attribute
+            title: Body structure incomplete
+            detail: Body is missing the account id.
+          
+
   
   /{account_id}:
     get:
@@ -42,6 +83,8 @@ protocols:
       200:
   post:
     displayName: Create a new customer
+    responses:
+      201:
   
   /{customer_id}:
     get:
@@ -53,7 +96,6 @@ protocols:
       displayName: Update information for a specific customer
       responses:
         204:
-
     delete:
       displayName: Delete information for a specific customer
       responses:
@@ -70,6 +112,8 @@ protocols:
 /transactions:
   post:
     displayName: Create a new transaction
+    responses:
+      201:
   /{transaction_id}:
     get:
       displayName: Get information for a specific transaction
