@@ -11,37 +11,20 @@ protocols:
 
 # Register new datatypes
 types:
-  Account: !include datatypes/Account.raml
-  Customer: !include datatypes/Customer.raml
-  Transaction: !include datatypes/Transaction.raml
-  CustomErrorMessage: !include datatypes/CustomErrorMessage.raml
+  Account: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Account.raml
+  Customer: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Customer.raml
+  Transaction: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Transaction.raml
+  CustomErrorMessage: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/CustomErrorMessage.raml
 
 documentation:
   - !include documentation/GettingStarted.raml
 
 resourceTypes:
-  Collection: !include resource-types/Collection.raml  
+  Collection: !include resource-types/Collection.raml
 
 /accounts:
-  post:
-    displayName: Create a new account
-    body:
-      type: Account
-      example: !include examples/AccountExample.raml
-    responses:
-      201:
-        headers:
-          Location:
-            example: /accounts/acc-123
-        body:
-          example: "Ok"
-      400:
-        headers:
-        body:
-          example:
-            type: Missing attribute
-            title: Body structure incomplete
-            detail: Body is missing the account id.
+  type: Collection
+  
   /{account_id}:
     get:
       displayName: Get information for a specific account
