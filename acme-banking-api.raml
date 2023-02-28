@@ -32,6 +32,8 @@ traits:
   /{account_id}:
     get:
       displayName: Get information for a specific account
+      is:
+        - Cacheable
       responses:
         200:
           body:
