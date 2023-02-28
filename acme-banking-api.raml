@@ -28,9 +28,8 @@ documentation:
 uses:
   Banking: libraries/BankingLibrary.raml
 
-
 /accounts:
-  type: Collection
+  type: Banking.Collection
   
   /{account_id}:
     get:
