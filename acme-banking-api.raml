@@ -1,6 +1,6 @@
 #%RAML 1.0
 title: ACME Banking API
-description: |-
+description: |
   This API offers access to personal banking data, around customers, transactions and accounts. Github Signed!
 mediaType:
   - application/json
@@ -42,6 +42,7 @@ types:
         200:
           body:
             type: Account
+            example: !include examples/AccountExample.raml
     put:
       displayName: Get information for a specific account
       body:
