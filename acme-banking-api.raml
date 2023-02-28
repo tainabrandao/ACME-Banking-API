@@ -28,7 +28,9 @@ documentation:
 uses:
   Banking: libraries/BankingLibrary.raml
 
-se curitySchemes 
+securitySchemes:
+  JWT: !include security-schemes/JWTToken.raml
+
 
 
 /accounts:
