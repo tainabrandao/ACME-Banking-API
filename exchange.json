@@ -1,1 +1,1 @@
-{"main":"acme-banking-api.raml","name":"ACME Banking API","classifier":"raml","tags":[]}
+{"main":"acme-banking-api.raml","name":"ACME Banking API","classifier":"raml","tags":[],"dependencies":[{"groupId":"5e70013a-e8d5-47d4-bba1-c74e13fbb622","assetId":"banking-data-types","version":"1.0.0"}]}
