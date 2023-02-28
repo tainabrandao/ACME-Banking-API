@@ -29,11 +29,14 @@ uses:
   Banking: libraries/BankingLibrary.raml
 
 securitySchemes:
-  JWT: !include security-schemes/JWTToken.raml
+  JWT: !include secutiry-schemes/JWTToken.raml
 
 /accounts:
   type: Banking.Collection
   post:
+    securedBy:
+      - JWT
+
     body:
       example: !include examples/AccountExample.raml
   
