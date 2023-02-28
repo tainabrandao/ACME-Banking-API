@@ -24,7 +24,7 @@ types:
     responses:
       201:
         headers:
-          Location: 
+          Location:
             example: /accounts/acc-123
       400:
         headers:
@@ -42,6 +42,8 @@ types:
             type: Account
     put:
       displayName: Get information for a specific account
+      body:
+        type: Account
       responses:
         201:
         503:
@@ -103,7 +105,6 @@ types:
           body:
             type: Customer
 
-
     patch:
       displayName: Update information for a specific customer
       responses:
@@ -150,5 +151,4 @@ types:
       responses:
         200:
           body:
-            type: 
-            
+            type: Transaction
