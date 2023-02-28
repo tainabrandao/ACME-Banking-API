@@ -74,8 +74,11 @@ types:
           Cache-Control:
             example: max-age=604800 # 1 week
         body:
+          type: Customer[]
   post:
     displayName: Create a new customer
+    body:
+      type: Customer
     responses:
       201:
       400:
