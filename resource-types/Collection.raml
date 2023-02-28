@@ -1,0 +1,20 @@
+#%RAML 1.0 ResourceType
+
+post:
+  displayName: Create a new <<resourcePathName>>
+  body:
+    type: <<resourcePathName | !singularize | !uppercamelcase>>
+  responses:
+    201:
+      headers:
+        Location:
+          example: /<<resourcePathName>>/acc-123
+      body:
+        example: OK
+    400:
+      headers:
+      body:
+        example:
+          type: Missing attribute
+          title: Body structure incomplete
+          detail: Body is missing the account id.
