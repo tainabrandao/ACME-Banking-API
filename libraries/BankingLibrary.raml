@@ -3,3 +3,71 @@ usage: Use the following traits to define request and response headers and respo
 
 traits:
   cacheable: !include /exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-cacheable-trait/1.0.1/Cacheable.raml
+
+resourceTypes:
+  Collection:
+    post?:    
+      description: Create a new <<resourcePathName | !singularize>>
+      displayName: Add <<resourcePathName | !singularize>>
+      body:
+        application/json:      
+          type: <<resourcePathName | !singularize | !uppercamelcase>>
+      responses:
+        201:
+          headers:
+            Location: 
+              description: URL of the new <<resourcePathName | !singularize>> information
+              example: /<<resourcePathName>>/8f19cb50-3f57-4d38              
+          body:        
+        503:
+          body:
+            application/json:  
+              type: !include ../datatypes/CustomErrorMessage.raml
+
+  Member:
+    get?:     
+      description: Retrieve a <<resourcePathName | !singularize>> with a specific <<resourcePathName | !singularize >>
+      displayName: Get a <<resourcePathName | !singularize>> by <<resourcePathName | !singularize>> ID
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<resourcePathName | !singularize | !uppercamelcase>>
+        404:
+          body:
+            application/json:
+              type: !include ../datatypes/CustomErrorMessage.raml       
+    patch?:
+      description: Update a specific <<resourcePathName | !singularize >>
+      displayName: Update a <<resourcePathName | !singularize>> by <<resourcePathName | !singularize>> ID
+      body:
+      responses:
+        204:    
+        501:
+          body:
+            application/json:
+              type: !include ../datatypes/CustomErrorMessage.raml  
+    delete?: 
+      description: Delete a specific <<resourcePathName | !singularize >>
+      displayName: Delete a <<resourcePathName | !singularize>> by <<resourcePathName | !singularize>> ID
+      responses:
+        200:
+          body:
+        404:
+          body:
+            application/json:
+              type: !include ../datatypes/CustomErrorMessage.raml   
+    put?:
+      body:
+        type: Account
+      responses:
+        200:
+          body:
+        201:
+          headers:
+            Location: 
+          body:         
+        501:
+          body:
+            application/json:
+              type: !include ../datatypes/CustomErrorMessage.raml    
