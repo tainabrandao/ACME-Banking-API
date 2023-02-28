@@ -22,18 +22,20 @@ documentation:
 #resourceTypes:
 #  Collection: !include resource-types/Collection.raml
 
-#traits:
+traits:
   Cacheable: !include exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-cacheable-trait/1.0.1/Cacheable.raml
 
+uses:
+  Banking: libraries/BankingLibrary.raml
 
 /accounts:
-  type: Collection
+  type: Banking.Collection
   
   /{account_id}:
     get:
       displayName: Get information for a specific account
       is:
-        - Cacheable
+        - Banking.Cacheable
       responses:
         200:
           body:
