@@ -11,25 +11,29 @@ protocols:
 
 # Register new datatypes
 types:
-  Account: !include exchange_modules/5e70013a-e8d5-47d4-bba1-c74e13fbb622/banking-data-types/1.0.0/datatypes/Account.raml
-  Customer: !include exchange_modules/5e70013a-e8d5-47d4-bba1-c74e13fbb622/banking-data-types/1.0.0/datatypes/Customer.raml
-  Transaction: !include exchange_modules/5e70013a-e8d5-47d4-bba1-c74e13fbb622/banking-data-types/1.0.0/datatypes/Transaction.raml
-  CustomErrorMessage: !include exchange_modules/5e70013a-e8d5-47d4-bba1-c74e13fbb622/banking-data-types/1.0.0/datatypes/CustomErrorMessage.raml
+  Account: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Account.raml
+  Customer: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Customer.raml
+  Transaction: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/Transaction.raml
+  CustomErrorMessage: !include exchange_modules/1c82d1a8-08ee-41e9-828f-6cec43f4de47/banking-data-types/1.0.1/datatypes/CustomErrorMessage.raml
 
 documentation:
   - !include documentation/GettingStarted.raml
 
-#resourceTypes:
-#  Collection: !include resource-types/Collection.raml
+# resourceTypes:
+#   Collection: !include resource-types/Collection.raml
 
-traits:
-  Cacheable: !include exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-cacheable-trait/1.0.1/Cacheable.raml
+# traits:
+#   Cacheable: !include exchange_modules/68ef9520-24e9-4cf2-b2f5-620025690913/training-cacheable-trait/1.0.1/Cacheable.raml
 
 uses:
   Banking: libraries/BankingLibrary.raml
 
+
 /accounts:
   type: Banking.Collection
+  post:
+    body:
+      example: !include examples/AccountExample.raml
   
   /{account_id}:
     get:
@@ -69,6 +73,8 @@ uses:
           type: Transaction[]
 
 /customers:
+  type: Banking.Collection
+
   get:
     displayName: Get all customers in the bank
     # headers & body for request
@@ -83,22 +89,7 @@ uses:
             example: max-age=604800 # 1 week
         body:
           type: Customer[]
-  post:
-    displayName: Create a new customer
-    body:
-      # this datatype includes the example data
-      type: Customer
-      example: !include examples/CustomerExampleExternal.raml
-    responses:
-      201:
-      400:
-        headers:
-        body:
-          example:
-            type: Missing attribute
-            title: Body structure incomplete
-            detail: Body is missing the customer id.
-      
+  
   
   /{customer_id}:
     get:
@@ -135,19 +126,8 @@ uses:
     
 
 /transactions:
-  post:
-    displayName: Create a new transaction
-    body:
-      type: Transaction
-    responses:
-      201:
-      400:
-        headers:
-        body:
-          example:
-            type: Missing attribute
-            title: Body structure incomplete
-            detail: Body is missing the transaction id.
+  type: Banking.Collection
+  
   /{transaction_id}:
     get:
       displayName: Get information for a specific transaction
