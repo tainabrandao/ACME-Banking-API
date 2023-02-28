@@ -9,8 +9,7 @@ resourceTypes:
     post?:    
       description: Create a new <<resourcePathName | !singularize>>
       displayName: Add <<resourcePathName | !singularize>>
-      body:
-        application/json:      
+      body:     
           type: <<resourcePathName | !singularize | !uppercamelcase>>
       responses:
         201:
